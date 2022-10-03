@@ -43,7 +43,7 @@ function App() {
   };
 
   const searchFood = foodList.filter((food, key) =>
-    food.foodName.includes(search)
+    food.foodName.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
