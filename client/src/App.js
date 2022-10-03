@@ -55,7 +55,7 @@ function App() {
           type="text"
           onChange={(e) => setFoodName(e.target.value)}
         ></input>
-        <label>Days Since You Ate It:</label>
+        <label>Quantity in stock:</label>
         <input type="number" onChange={(e) => setDays(e.target.value)}></input>
       </div>
       <button className="add-btn" onClick={addToList}>
@@ -72,7 +72,7 @@ function App() {
               return (
                 <div className="food-list" key={key}>
                   <h4>{`Food: ${food.foodName}`}</h4>
-                  <h4>{`Days: ${food.daysSinceIAte}`}</h4>
+                  <h4>{`Stock: ${food.daysSinceIAte}`}</h4>
                   <input
                     type="text"
                     placeholder="New foof Name..."
@@ -97,7 +97,7 @@ function App() {
               return (
                 <div className="food-list" key={key}>
                   <h4>{`Food: ${food.foodName}`}</h4>
-                  <h4>{`Days: ${food.daysSinceIAte}`}</h4>
+                  <h4>{`Stock: ${food.daysSinceIAte}`}</h4>
                   <input
                     type="text"
                     placeholder="New foof Name..."
