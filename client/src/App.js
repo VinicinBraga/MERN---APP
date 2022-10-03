@@ -7,6 +7,8 @@ function App() {
   const [days, setDays] = useState(0);
   const [newFoodName, setNewFoodName] = useState("");
   const [foodList, setFoodList] = useState([]);
+  const [useSearch, setUseSearch] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     Axios.get("http://localhost:3001/read").then((response) => {
@@ -35,6 +37,15 @@ function App() {
     window.location.reload();
   };
 
+  const setingSearch = (e) => {
+    setSearch(e.target.value);
+    setUseSearch(true);
+  };
+
+  const searchFood = foodList.filter((food, key) =>
+    food.foodName.includes(search)
+  );
+
   return (
     <div className="App">
       <h1 className="main-title">Title</h1>
@@ -50,33 +61,63 @@ function App() {
       <button className="add-btn" onClick={addToList}>
         Add To List
       </button>
+      <div className="search-input">
+        <label>Search</label>
+        <input type={"text"} value={search} onChange={(e) => setingSearch(e)} />
+      </div>
       <div className="list-title">
         <h2>Food List</h2>
-        {foodList.map((food, key) => {
-          return (
-            <div className="food-list" key={key}>
-              <h4>{`Food: ${food.foodName}`}</h4>
-              <h4>{`Days: ${food.daysSinceIAte}`}</h4>
-              <input
-                type="text"
-                placeholder="New foof Name..."
-                onChange={(e) => setNewFoodName(e.target.value)}
-              ></input>
-              <button
-                className="update-btn"
-                onClick={() => updateFoodName(food._id)}
-              >
-                Update
-              </button>
-              <button
-                className="delete-btn"
-                onClick={() => deleteFood(food._id)}
-              >
-                Delete
-              </button>
-            </div>
-          );
-        })}
+        {useSearch === false
+          ? foodList.map((food, key) => {
+              return (
+                <div className="food-list" key={key}>
+                  <h4>{`Food: ${food.foodName}`}</h4>
+                  <h4>{`Days: ${food.daysSinceIAte}`}</h4>
+                  <input
+                    type="text"
+                    placeholder="New foof Name..."
+                    onChange={(e) => setNewFoodName(e.target.value)}
+                  ></input>
+                  <button
+                    className="update-btn"
+                    onClick={() => updateFoodName(food._id)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteFood(food._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              );
+            })
+          : searchFood.map((food, key) => {
+              return (
+                <div className="food-list" key={key}>
+                  <h4>{`Food: ${food.foodName}`}</h4>
+                  <h4>{`Days: ${food.daysSinceIAte}`}</h4>
+                  <input
+                    type="text"
+                    placeholder="New foof Name..."
+                    onChange={(e) => setNewFoodName(e.target.value)}
+                  ></input>
+                  <button
+                    className="update-btn"
+                    onClick={() => updateFoodName(food._id)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteFood(food._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              );
+            })}
       </div>
     </div>
   );

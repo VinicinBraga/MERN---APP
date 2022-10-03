@@ -41,6 +41,14 @@
   position:relative;
   top:2px;
 }
+
+.search-input{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 20px;
+}
+
 .list-title{
   color: #0072b4;
   text-align: center;

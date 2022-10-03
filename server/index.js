@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-  `mongodb+srv://vinicin:${process.env.DB_PASSWORD}@mern.dtjgsbz.mongodb.net/food?retryWrites=true&w=majority`,
+  `mongodb+srv://user:${process.env.DB_PASSWORD}@mern-data.jmwlrsi.mongodb.net/food?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
   }
