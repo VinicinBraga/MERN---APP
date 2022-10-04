@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   const [foodName, setFoodName] = useState("");
-  const [days, setDays] = useState(0);
+  const [stock, setDays] = useState(0);
   const [newFoodName, setNewFoodName] = useState("");
   const [foodList, setFoodList] = useState([]);
   const [useSearch, setUseSearch] = useState(false);
@@ -19,7 +19,7 @@ function App() {
   const addToList = () => {
     Axios.post("http://localhost:3001/insert", {
       foodName: foodName,
-      days: days,
+      stock: stock,
     });
     window.location.reload();
   };
@@ -72,8 +72,9 @@ function App() {
               return (
                 <div className="food-list" key={key}>
                   <h4>{`Food: ${food.foodName}`}</h4>
-                  <h4>{`Stock: ${food.daysSinceIAte}`}</h4>
+                  <h4>{`Stock: ${food.stock}`}</h4>
                   <input
+                    className="newfood-input"
                     type="text"
                     placeholder="New foof Name..."
                     onChange={(e) => setNewFoodName(e.target.value)}
@@ -97,8 +98,9 @@ function App() {
               return (
                 <div className="food-list" key={key}>
                   <h4>{`Food: ${food.foodName}`}</h4>
-                  <h4>{`Stock: ${food.daysSinceIAte}`}</h4>
+                  <h4>{`Stock: ${food.stock}`}</h4>
                   <input
+                    className="newfood-input"
                     type="text"
                     placeholder="New foof Name..."
                     onChange={(e) => setNewFoodName(e.target.value)}

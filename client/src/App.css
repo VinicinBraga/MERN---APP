@@ -53,13 +53,18 @@
   color: #0072b4;
   text-align: center;
   padding-top: 30px;
+  width: 30%;
 }
 .food-list{
   display: flex;
   color: black;
   flex-direction:column;
   align-items:flex-start;
-  padding-top: 10px;
+  padding-top: 10px; 
+}
+
+.newfood-input{
+  width: 100%;
 }
 .delete-btn{
   all: unset;
@@ -67,7 +72,7 @@
   border-radius:28px;
   color: #fff;
   font-size: small;
-  width: 50%;
+  width: 100%;
   height: 20px;
   margin-top: 5px;
   text-align: center;
@@ -90,7 +95,7 @@
   border-radius:28px;
   color: #fff;
   font-size: small;
-  width: 50%;
+  width: 100%;
   height: 20px;
   margin-top: 2px;
   text-align: center;
