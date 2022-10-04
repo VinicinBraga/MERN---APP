@@ -19,8 +19,8 @@ mongoose.connect(
 
 app.post("/insert", async (req, res) => {
   const foodName = req.body.foodName;
-  const days = req.body.days;
-  const food = new FoodModel({ foodName: foodName, daysSinceIAte: days });
+  const stock = req.body.stock;
+  const food = new FoodModel({ foodName: foodName, stock: stock });
   try {
     await food.save();
     res.send("insert data");

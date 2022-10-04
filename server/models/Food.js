@@ -6,7 +6,7 @@ const FoodSchema = new mongoose.Schema({
     require: true,
   },
 
-  daysSinceIAte: {
+  stock: {
     type: Number,
     require: true,
   },
