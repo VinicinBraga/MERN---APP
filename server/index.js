@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-  "mongodb+srv://vinicin:0800Vbnm@custumers-data.efxekgr.mongodb.net/customers?retryWrites=true&w=majority",
+  `mongodb+srv://vinicin:${process.env.DB_PASSWORD}@custumers-data.efxekgr.mongodb.net/customers?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
   }
