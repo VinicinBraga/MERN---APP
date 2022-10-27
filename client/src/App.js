@@ -1,125 +1,57 @@
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import React from "react";
+
 import "./App.css";
 
 function App() {
-  const [foodName, setFoodName] = useState("");
-  const [stock, setDays] = useState(0);
-  const [newFoodName, setNewFoodName] = useState("");
-  const [foodList, setFoodList] = useState([]);
-  const [useSearch, setUseSearch] = useState(false);
-  const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    Axios.get("http://localhost:3001/read").then((response) => {
-      setFoodList(response.data);
-    });
-  }, []);
-
-  const addToList = () => {
-    Axios.post("http://localhost:3001/insert", {
-      foodName: foodName,
-      stock: stock,
-    });
-    window.location.reload();
-  };
-
-  const updateFoodName = (id) => {
-    Axios.put("http://localhost:3001/update", {
-      id: id,
-      newFoodName: newFoodName,
-    });
-    window.location.reload();
-  };
-
-  const deleteFood = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`);
-    window.location.reload();
-  };
-
-  const setingSearch = (e) => {
-    setSearch(e.target.value);
-    setUseSearch(true);
-  };
-
-  const searchFood = foodList.filter((food, key) =>
-    food.foodName.toLowerCase().includes(search.toLowerCase())
-  );
-
   return (
     <div className="App">
-      <h1 className="main-title">Title</h1>
-      <div className="main-box">
-        <label>Food Name:</label>
-        <input
-          type="text"
-          onChange={(e) => setFoodName(e.target.value)}
-        ></input>
-        <label>Quantity in stock:</label>
-        <input type="number" onChange={(e) => setDays(e.target.value)}></input>
+      <div className="header">
+        <h1>CUSTOMERS DATA</h1>
       </div>
-      <button className="add-btn" onClick={addToList}>
-        Add To List
-      </button>
-      <div className="search-input">
-        <label>Search</label>
-        <input type={"text"} value={search} onChange={(e) => setingSearch(e)} />
-      </div>
-      <div className="list-title">
-        <h2>Food List</h2>
-        {useSearch === false
-          ? foodList.map((food, key) => {
-              return (
-                <div className="food-list" key={key}>
-                  <h4>{`Food: ${food.foodName}`}</h4>
-                  <h4>{`Stock: ${food.stock}`}</h4>
-                  <input
-                    className="newfood-input"
-                    type="text"
-                    placeholder="New foof Name..."
-                    onChange={(e) => setNewFoodName(e.target.value)}
-                  ></input>
-                  <button
-                    className="update-btn"
-                    onClick={() => updateFoodName(food._id)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="delete-btn"
-                    onClick={() => deleteFood(food._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })
-          : searchFood.map((food, key) => {
-              return (
-                <div className="food-list" key={key}>
-                  <h4>{`Food: ${food.foodName}`}</h4>
-                  <h4>{`Stock: ${food.stock}`}</h4>
-                  <input
-                    className="newfood-input"
-                    type="text"
-                    placeholder="New foof Name..."
-                    onChange={(e) => setNewFoodName(e.target.value)}
-                  ></input>
-                  <button
-                    className="update-btn"
-                    onClick={() => updateFoodName(food._id)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="delete-btn"
-                    onClick={() => deleteFood(food._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
+      <fieldset className="registration-container">
+        <div className="registration">
+          <h3>Registration</h3>
+          <div className="register-inputs">
+            <label>Name:</label>
+            <input type="text" />
+            <label>Phone:</label>
+            <input type="text" />
+            <label>E-mail:</label>
+            <input type="text" />
+            <div className="address-container">
+              <label>Address:</label>
+              <div>
+                <label>Street:</label>
+                <input type="text" id="street" />
+                <label>Number:</label>
+                <input type="text" id="number" />
+              </div>
+              <label>District:</label>
+              <input type="text" />
+              <label>City:</label>
+              <input type="text" />
+              <label>State:</label>
+              <input type="text" />
+              <label>Country:</label>
+              <input type="text" />
+            </div>
+          </div>
+        </div>
+        <div className="descripition">
+          <h3>Project Description</h3>
+          <input type="text" />
+          <div className="add-btn-container">
+            <button>Add to list</button>
+          </div>
+        </div>
+      </fieldset>
+      <div className="customer-data">
+        <h3>Customers Data</h3>
+        <div>
+          <h4>Nome do cliente</h4>
+          <button>Update</button>
+          <button>Delete</button>
+        </div>
       </div>
     </div>
   );

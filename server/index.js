@@ -5,58 +5,38 @@ const cors = require("cors");
 const app = express();
 const port = 3001;
 
-const FoodModel = require("./models/Food");
+const CustomerModel = require("./models/Customer");
 
 app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-  `mongodb+srv://user:${process.env.DB_PASSWORD}@mern-data.jmwlrsi.mongodb.net/food?retryWrites=true&w=majority`,
+  "mongodb+srv://vinicin:0800Vbnm@custumers-data.efxekgr.mongodb.net/customers?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
   }
 );
 
-app.post("/insert", async (req, res) => {
-  const foodName = req.body.foodName;
-  const stock = req.body.stock;
-  const food = new FoodModel({ foodName: foodName, stock: stock });
-  try {
-    await food.save();
-    res.send("insert data");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-app.get("/read", async (req, res) => {
-  FoodModel.find({}, (err, result) => {
-    if (err) {
-      res.send(err);
-    }
-    res.send(result);
+app.get("/", async (req, res) => {
+  const customer = new CustomerModel({
+    name: "Vinícius Braga Matta",
+    phone: 0000 - 0000,
+    email: "vini@teste.com",
+    address: {
+      street: "street teste",
+      number: 00,
+      district: "district teste",
+      city: "city teste",
+      state: "state teste",
+      country: "country teste",
+    },
+    details: "datails teste",
   });
-});
-
-app.put("/update", async (req, res) => {
-  const id = req.body.id;
-  const newFoodName = req.body.newFoodName;
-
   try {
-    await FoodModel.findById(id, (err, updatedFood) => {
-      updatedFood.foodName = newFoodName;
-      updatedFood.save();
-      res.send("updated");
-    });
-  } catch (error) {
-    console.log(error);
+    await customer.save();
+  } catch (err) {
+    console.log(err);
   }
-});
-
-app.delete("/delete/:id", async (req, res) => {
-  const id = req.params.id;
-  await FoodModel.findByIdAndRemove(id).exec();
-  res.send("deleted");
 });
 
 app.get("/", (req, res) => res.send("Hello World!"));
