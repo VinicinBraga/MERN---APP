@@ -79,8 +79,8 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="descripition">
-          <h3>Description</h3>
+        <div className="description">
+          <h3> ProjectDescription</h3>
           <div>
             <textarea type="text" />
           </div>
@@ -89,12 +89,14 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="customer-data">
+      <div className="customer-list">
         <h3>Customers Data</h3>
-        <div>
-          <h4>Nome do cliente</h4>
-          <button>Update</button>
-          <button>Delete</button>
+        <div className="customer-item">
+          <h4>Nome do cliente e um nome</h4>
+          <div className="customer-bts">
+            <button className="Update">Update</button>
+            <button className="Delete">Delete</button>
+          </div>
         </div>
       </div>
     </div>
