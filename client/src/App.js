@@ -22,14 +22,13 @@ function App() {
       name: name,
       phone: phone,
       email: email,
-      address: {
-        street: street,
-        number: number,
-        district: district,
-        city: city,
-        state: state,
-        country: country,
-      },
+      street: street,
+      number: number,
+      district: district,
+      city: city,
+      state: state,
+      country: country,
+      description: description,
     });
     console.log(name);
     console.log(phone);
@@ -143,21 +142,12 @@ function App() {
             <div className="register-label">
               <label>District:</label>
             </div>
-            <div className="register-input-row">
+            <div className="register-input">
               <input
-                id="district"
                 type="text"
                 placeholder="Customer District"
                 onChange={(e) => {
                   setDistrict(e.target.value);
-                }}
-              />
-              <input
-                id="state"
-                type="text"
-                placeholder="State"
-                onChange={(e) => {
-                  setState(e.target.value);
                 }}
               />
             </div>
@@ -166,12 +156,21 @@ function App() {
             <div className="register-label">
               <label>City:</label>
             </div>
-            <div className="register-input">
+            <div className="register-input-row">
               <input
+                id="city"
                 type="text"
                 placeholder="Customer City"
                 onChange={(e) => {
                   setCity(e.target.value);
+                }}
+              />
+              <input
+                id="state"
+                type="text"
+                placeholder="State"
+                onChange={(e) => {
+                  setState(e.target.value);
                 }}
               />
             </div>
