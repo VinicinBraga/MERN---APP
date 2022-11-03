@@ -64,6 +64,14 @@ function App() {
           </div>
           <div className="register-tag">
             <div className="register-label">
+              <label>District:</label>
+            </div>
+            <div className="register-input">
+              <input type="text" placeholder="Customer District" />
+            </div>
+          </div>
+          <div className="register-tag">
+            <div className="register-label">
               <label>City:</label>
             </div>
             <div className="register-input">

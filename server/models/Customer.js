@@ -18,6 +18,7 @@ const CustomerSchema = new mongoose.Schema({
   },
 
   address: {
+    zipcode: Number,
     street: String,
     number: Number,
     district: String,
