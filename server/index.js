@@ -17,23 +17,23 @@ mongoose.connect(
   }
 );
 
-app.get("/", async (req, res) => {
+app.post("/insert", async (req, res) => {
   const customer = new CustomerModel({
     name: "Vinícius Braga Matta",
-    phone: 0000 - 0000,
+    phone: 99999999,
     email: "vini@teste.com",
     address: {
       street: "street teste",
-      number: 00,
+      number: 20,
       district: "district teste",
       city: "city teste",
       state: "state teste",
       country: "country teste",
     },
-    details: "datails teste",
   });
   try {
     await customer.save();
+    res.send("insert data");
   } catch (err) {
     console.log(err);
   }

@@ -106,7 +106,7 @@ input{
   width: 100%;
 }
 
-#street{
+#street, #district{
   display: flex;
   width: 60%;
   padding-left: 5px;
@@ -114,13 +114,14 @@ input{
   font-size: 10px ;
   
 }
-#number{
+#number, #state{
   display: flex;
   width: 18%;
   padding-left: 5px;
   height: 22px;
   font-size: 10px ;
 }
+
 
 .description {
   width: 50%;
@@ -159,6 +160,7 @@ textarea {
  font-weight: bolder;
  background-color: #38B6FF;
  border-radius: 4px;
+ cursor: pointer;
 }
 
 .customer-list{
@@ -177,7 +179,7 @@ textarea {
   align-items: center;
   justify-content: space-evenly;
   height: 50px;
-  box-shadow: 5px 5px 15px -1px #000000;
+  box-shadow: 5px 5px 15px -3px #000000;
 }
 
 .customer-bts{
@@ -188,19 +190,20 @@ textarea {
 }
 
  .Update{
-  width: 130px;
+  width: 140px;
   height: 30px;
   font-weight: bolder;
   background-color: #38B6FF;
   border-radius: 4px;
-  
+  cursor: pointer;
  }
 
  .Delete{
-  width: 130px;
+  width: 140px;
   height: 30px;
   font-weight: bolder;
   color: white;
   background-color: black;
   border-radius: 4px;
+  cursor: pointer;
  }
