@@ -6,6 +6,7 @@ const app = express();
 const port = 3001;
 
 const CustomerModel = require("./models/Customer");
+const { updateOne } = require("./models/Customer");
 
 app.use(express.json());
 app.use(cors());
@@ -48,6 +49,40 @@ app.get("/read", async (req, res) => {
     }
     res.send(result);
   });
+});
+
+app.put("/update", async (req, res) => {
+  id = req.body.id;
+  newName = req.body.newName;
+  newPhone = req.body.newPhone;
+  newEmail = req.body.newEmail;
+  newZipCode = req.body.address.newZipCode;
+  newStreet = req.body.address.newStreet;
+  newNumber = req.body.address.newNumber;
+  newDistrict = req.body.address.newDistrict;
+  newCity = req.body.address.newCity;
+  newState = req.body.address.newState;
+  newCountry = req.body.address.newCountry;
+  newDescription = req.body.newDescription;
+  try {
+    await CustomerModel.findById(id, (err, updateCustomer) => {
+      updateCustomer.name = newName;
+      updateCustomer.phone = newPhone;
+      updateCustomer.email = newEmail;
+      updateCustomer.zipCode = newZipCode;
+      updateCustomer.street = newStreet;
+      updateCustomer.number = newNumber;
+      updateCustomer.district = newDistrict;
+      updateCustomer.state = newState;
+      updateCustomer.city = newCity;
+      updateCustomer.country = newCountry;
+      updateCustomer.description = newDescription;
+      updateCustomer.save();
+      res.send("updated");
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.get("/", (req, res) => res.send("Hello World!"));
