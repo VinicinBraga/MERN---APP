@@ -19,17 +19,19 @@ mongoose.connect(
 
 app.post("/insert", async (req, res) => {
   const customer = new CustomerModel({
-    name: "Vinícius Braga Matta",
-    phone: 99999999,
-    email: "vini@teste.com",
+    name: req.body.name,
+    phone: req.body.phone,
+    email: req.body.email,
     address: {
-      street: "street teste",
-      number: 20,
-      district: "district teste",
-      city: "city teste",
-      state: "state teste",
-      country: "country teste",
+      zipCode: req.body.zipCode,
+      street: req.body.street,
+      number: req.body.number,
+      district: req.body.district,
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
     },
+    description: req.body.description,
   });
   try {
     await customer.save();
@@ -37,6 +39,15 @@ app.post("/insert", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+app.get("/read", async (req, res) => {
+  CustomerModel.find({}, (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(result);
+  });
 });
 
 app.get("/", (req, res) => res.send("Hello World!"));
