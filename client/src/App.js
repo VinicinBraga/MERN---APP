@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "./asssets/images/logo.png";
 import Axios from "axios";
+import Modal from "./components/Modal/Modal";
 
 import "./App.css";
 
@@ -17,6 +18,7 @@ function App() {
   const [country, setCountry] = useState("");
   const [description, setDescription] = useState("");
   const [customerList, setCustomerList] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     Axios.get("http://localhost:3001/read").then((response) => {
@@ -38,16 +40,6 @@ function App() {
       country: country,
       description: description,
     });
-    console.log(name);
-    console.log(phone);
-    console.log(email);
-    console.log(zipCode);
-    console.log(street);
-    console.log(number);
-    console.log(district);
-    console.log(city);
-    console.log(country);
-    console.log(description);
   };
 
   return (
@@ -215,15 +207,20 @@ function App() {
         </div>
       </div>
       <div className="customer-list">
-        <h3>Customers Data</h3>
+        <h3>Customers Data</h3>;
         {customerList.map((customer, key) => {
           return (
             <div className="customer-item" key={key}>
               <h4>{customer.name}</h4>
               <div className="customer-bts">
-                <button className="Update">Update</button>
+                <button className="edit" onClick={() => setIsVisible(true)}>
+                  Edit
+                </button>
                 <button className="Delete">Delete</button>
               </div>
+              {isVisible ? (
+                <Modal setIsVisible={setIsVisible} customer={customer} />
+              ) : null}
             </div>
           );
         })}

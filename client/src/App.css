@@ -31,7 +31,7 @@
 
 .logo{
   max-width: 120px;
-  max-height: 120spx;
+  max-height: 120px;
   margin-left: 5%;
   margin-top: 15px;
   margin-bottom: 15px; 
@@ -189,7 +189,7 @@ textarea {
   width: 40vw;
 }
 
- .Update{
+ .edit{
   width: 140px;
   height: 30px;
   font-weight: bolder;
