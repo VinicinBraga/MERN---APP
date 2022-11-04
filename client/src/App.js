@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./asssets/images/logo.png";
 import Axios from "axios";
 
@@ -16,12 +16,20 @@ function App() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [description, setDescription] = useState("");
+  const [customerList, setCustomerList] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/read").then((response) => {
+      setCustomerList(response.data);
+    });
+  }, []);
 
   const addtoList = () => {
     Axios.post("http://localhost:3001/insert", {
       name: name,
       phone: phone,
       email: email,
+      zipCode: zipCode,
       street: street,
       number: number,
       district: district,
@@ -208,13 +216,17 @@ function App() {
       </div>
       <div className="customer-list">
         <h3>Customers Data</h3>
-        <div className="customer-item">
-          <h4>Nome do cliente e um nome</h4>
-          <div className="customer-bts">
-            <button className="Update">Update</button>
-            <button className="Delete">Delete</button>
-          </div>
-        </div>
+        {customerList.map((customer, key) => {
+          return (
+            <div className="customer-item" key={key}>
+              <h4>{customer.name}</h4>
+              <div className="customer-bts">
+                <button className="Update">Update</button>
+                <button className="Delete">Delete</button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
